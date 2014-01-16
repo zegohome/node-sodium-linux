@@ -1,0 +1,117 @@
+sodium/libsodium_la-compat.lo: sodium/compat.c \
+ include/sodium/crypto_auth_hmacsha256.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h \
+ include/sodium/export.h include/sodium/crypto_auth_hmacsha512256.h \
+ include/sodium/crypto_box_curve25519xsalsa20poly1305.h \
+ include/sodium/crypto_hash_sha256.h include/sodium/crypto_hash_sha512.h \
+ include/sodium/crypto_onetimeauth_poly1305.h /usr/include/sys/types.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/time.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/bits/time.h \
+ /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h /usr/include/bits/stdio2.h \
+ include/sodium/crypto_scalarmult_curve25519.h \
+ include/sodium/crypto_secretbox_xsalsa20poly1305.h \
+ include/sodium/crypto_sign_ed25519.h \
+ include/sodium/crypto_stream_xsalsa20.h \
+ include/sodium/crypto_verify_16.h include/sodium/crypto_verify_32.h \
+ include/sodium/export.h
+
+include/sodium/crypto_auth_hmacsha256.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h:
+
+include/sodium/export.h:
+
+include/sodium/crypto_auth_hmacsha512256.h:
+
+include/sodium/crypto_box_curve25519xsalsa20poly1305.h:
+
+include/sodium/crypto_hash_sha256.h:
+
+include/sodium/crypto_hash_sha512.h:
+
+include/sodium/crypto_onetimeauth_poly1305.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/time.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/bits/stdio2.h:
+
+include/sodium/crypto_scalarmult_curve25519.h:
+
+include/sodium/crypto_secretbox_xsalsa20poly1305.h:
+
+include/sodium/crypto_sign_ed25519.h:
+
+include/sodium/crypto_stream_xsalsa20.h:
+
+include/sodium/crypto_verify_16.h:
+
+include/sodium/crypto_verify_32.h:
+
+include/sodium/export.h:

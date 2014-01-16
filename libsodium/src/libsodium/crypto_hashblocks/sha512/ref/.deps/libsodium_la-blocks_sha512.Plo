@@ -1,0 +1,14 @@
+crypto_hashblocks/sha512/ref/libsodium_la-blocks_sha512.lo: \
+ crypto_hashblocks/sha512/ref/blocks_sha512.c \
+ crypto_hashblocks/sha512/ref/api.h \
+ include/sodium/crypto_hashblocks_sha512.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h \
+ include/sodium/export.h
+
+crypto_hashblocks/sha512/ref/api.h:
+
+include/sodium/crypto_hashblocks_sha512.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h:
+
+include/sodium/export.h:

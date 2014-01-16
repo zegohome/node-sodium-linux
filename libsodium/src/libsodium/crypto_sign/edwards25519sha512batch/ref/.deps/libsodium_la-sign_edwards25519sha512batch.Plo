@@ -1,0 +1,86 @@
+crypto_sign/edwards25519sha512batch/ref/libsodium_la-sign_edwards25519sha512batch.lo: \
+ crypto_sign/edwards25519sha512batch/ref/sign_edwards25519sha512batch.c \
+ crypto_sign/edwards25519sha512batch/ref/api.h \
+ include/sodium/crypto_sign_edwards25519sha512batch.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h \
+ include/sodium/export.h include/sodium/crypto_hash_sha512.h \
+ include/sodium/randombytes.h /usr/include/sys/types.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/time.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/bits/time.h \
+ /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h \
+ include/sodium/crypto_verify_32.h \
+ crypto_sign/edwards25519sha512batch/ref/ge25519.h \
+ crypto_sign/edwards25519sha512batch/ref/fe25519.h \
+ include/sodium/crypto_uint32.h \
+ crypto_sign/edwards25519sha512batch/ref/sc25519.h
+
+crypto_sign/edwards25519sha512batch/ref/api.h:
+
+include/sodium/crypto_sign_edwards25519sha512batch.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h:
+
+include/sodium/export.h:
+
+include/sodium/crypto_hash_sha512.h:
+
+include/sodium/randombytes.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/time.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+include/sodium/crypto_verify_32.h:
+
+crypto_sign/edwards25519sha512batch/ref/ge25519.h:
+
+crypto_sign/edwards25519sha512batch/ref/fe25519.h:
+
+include/sodium/crypto_uint32.h:
+
+crypto_sign/edwards25519sha512batch/ref/sc25519.h:

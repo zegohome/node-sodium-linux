@@ -1,0 +1,11 @@
+crypto_stream/xsalsa20/libsodium_la-stream_xsalsa20_api.lo: \
+ crypto_stream/xsalsa20/stream_xsalsa20_api.c \
+ include/sodium/crypto_stream_xsalsa20.h \
+ /usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h \
+ include/sodium/export.h
+
+include/sodium/crypto_stream_xsalsa20.h:
+
+/usr/lib/gcc/x86_64-amazon-linux/4.6.3/include/stddef.h:
+
+include/sodium/export.h:
