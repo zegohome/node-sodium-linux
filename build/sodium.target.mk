@@ -25,13 +25,15 @@ CFLAGS_C_Debug :=
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Debug := \
-	-fno-rtti
+	-fno-rtti \
+	-fno-exceptions
 
 INCS_Debug := \
-	-I/home/deploy/.node-gyp/0.10.11/src \
-	-I/home/deploy/.node-gyp/0.10.11/deps/uv/include \
-	-I/home/deploy/.node-gyp/0.10.11/deps/v8/include \
-	-I$(srcdir)/libsodium/src/libsodium/include
+	-I/home/ec2-user/.node-gyp/0.10.36/src \
+	-I/home/ec2-user/.node-gyp/0.10.36/deps/uv/include \
+	-I/home/ec2-user/.node-gyp/0.10.36/deps/v8/include \
+	-I$(srcdir)/deps/libsodium-1.0.0/src/libsodium/include \
+	-I$(srcdir)/node_modules/nan
 
 DEFS_Release := \
 	'-D_LARGEFILE_SOURCE' \
@@ -48,26 +50,32 @@ CFLAGS_Release := \
 	-m64 \
 	-O2 \
 	-fno-strict-aliasing \
-	-fno-tree-vrp
+	-fno-tree-vrp \
+	-fno-omit-frame-pointer
 
 # Flags passed to only C files.
 CFLAGS_C_Release :=
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Release := \
-	-fno-rtti
+	-fno-rtti \
+	-fno-exceptions
 
 INCS_Release := \
-	-I/home/deploy/.node-gyp/0.10.11/src \
-	-I/home/deploy/.node-gyp/0.10.11/deps/uv/include \
-	-I/home/deploy/.node-gyp/0.10.11/deps/v8/include \
-	-I$(srcdir)/libsodium/src/libsodium/include
+	-I/home/ec2-user/.node-gyp/0.10.36/src \
+	-I/home/ec2-user/.node-gyp/0.10.36/deps/uv/include \
+	-I/home/ec2-user/.node-gyp/0.10.36/deps/v8/include \
+	-I$(srcdir)/deps/libsodium-1.0.0/src/libsodium/include \
+	-I$(srcdir)/node_modules/nan
 
 OBJS := \
 	$(obj).target/$(TARGET)/sodium.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
+
+# Make sure our dependencies are built before any of us.
+$(OBJS): | $(builddir)/sodium.a $(obj).target/deps/sodium.a
 
 # CFLAGS et al overrides must be target-local.
 # See "Target-specific Variable Values" in the GNU Make manual.
@@ -100,13 +108,12 @@ LDFLAGS_Release := \
 	-rdynamic \
 	-m64
 
-LIBS := \
-	../libsodium/src/libsodium/.libs/libsodium.so
+LIBS :=
 
 $(obj).target/sodium.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(obj).target/sodium.node: LIBS := $(LIBS)
 $(obj).target/sodium.node: TOOLSET := $(TOOLSET)
-$(obj).target/sodium.node: $(OBJS) FORCE_DO_CMD
+$(obj).target/sodium.node: $(OBJS) $(obj).target/deps/sodium.a FORCE_DO_CMD
 	$(call do_cmd,solink_module)
 
 all_deps += $(obj).target/sodium.node

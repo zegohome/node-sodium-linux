@@ -1,3 +1,7 @@
+[![Build Status](https://secure.travis-ci.org/paixaop/node-sodium.png)](http://travis-ci.org/paixaop/node-sodium)
+
+Please check the develop branch for node 0.11 and 0.12 support, detached signatures and system architecture detection
+
 # node-sodium
 
 
@@ -57,45 +61,24 @@ Please read the work in progress documentation found under [`docs/`](https://git
 You shoudld also review the unit tests as most of the high level API is "documented" there.
 Don't forget to check out the examples as well.
 
+The low level `libsodium` API documentation is now complete. All ported functions have been documented in [low-level-api.md](./docs/low-level-api.md) with code examples.
+
+Please be patient as I document the rest of the APIs, or better still help out :)
+
 # Lib Sodium Documentation
-Lib Sodium is somewhat documented [here](http://mob5.host.cs.st-andrews.ac.uk/html/). Node-Sodium follows the same structure and I will keep documenting it as fast as possible. 
+Lib Sodium is documented [here](http://doc.libsodium.org/). Node-Sodium follows the same structure and I will keep documenting it as fast as possible. 
 
 # Install
 
-Tested on Mac and Linux
+Tested on Mac, Linux and IllumOS Systems
 
     npm install sodium
     
 node-sodium depends on lib sodium, so if lib sodium does not compile on your platform chances are `npm install sodium` will fail.
 
-# Manual Install
-Clone this git repository, and change to the local directory where you ran git clone to, 
+# Manual Build
 
-    npm install
-
-This will pull lib sodium from github and compile it by running the following commands
-
-    cd libsodium
-    ./autogen
-    ./configure
-    make
-    
-Followed by
-
-    cd ..
-    npm build .
-    npm install
-    
-If you get an `autogen.sh` error similar to this
-    
-    ./autogen.sh: line 13: libtoolize: command not found
-    
-You'll need to install libtool and automake in your platform. For Mac OSX you can use [Homebrew](http://brew.sh)
-
-    brew install libtool automake    
-
-Then repeat the steps from `./autogen.sh`
-    
+    node-gyp build    
 
 # Code Samples
 Please check the fully documented code samples in `test/test_sodium.js`.
@@ -120,5 +103,8 @@ You need to have mocha test suite installed globally then you can run the node-s
 	
     make test-cov
 	
+
+# License
+This software is licensed thorugh MIT License. Please read the LICENSE file for more details.
 
 

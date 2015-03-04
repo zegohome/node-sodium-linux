@@ -1,41 +1,21 @@
 {
-      'targets': [
+  'variables': { 'target_arch%': 'ia32', 'naclversion': '1.0.0' },
+
+        'targets': [
             {
                   'target_name': 'sodium',
                   'sources': [
                         'sodium.cc',
                   ],
+                  "dependencies": [
+                        "<(module_root_dir)/deps/libsodium.gyp:libsodium"
+                  ],
                   'include_dirs': [
-                        './libsodium/src/libsodium/include',
+                       './deps/libsodium-<(naclversion)/src/libsodium/include',
+                       "<!(node -e \"require('nan')\")"
                   ],
                   'cflags!': [ '-fno-exceptions' ],
-                  'cflags_cc!': [ '-fno-exceptions' ],
-                  'conditions': [
-                        [
-                              'OS=="mac"', {
-                                    'xcode_settings': {
-                                          'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
-                                    },
-                                    'libraries': [
-                                          "../libsodium/src/libsodium/.libs/libsodium.a"
-                                    ],
-                              }
-                        ],
-                        [
-                              'OS=="linux"', {
-                                    'libraries': [
-                                          "../libsodium/src/libsodium/.libs/libsodium.so"
-                                    ],
-                              }
-                        ],
-                        [
-                              'OS=="win"', {
-                                    'libraries': [
-                                          "../libsodium/src/libsodium/.libs/libsodium.lib"
-                                    ],
-                              }
-                        ],
-                  ]
+                  
             }
       ]
 }
