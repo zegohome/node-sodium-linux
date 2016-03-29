@@ -5,7 +5,7 @@
 
 var should = require('should');
 var crypto = require('crypto');
-var sodium = require('../build/Release/sodium');
+var sodium = require('../build/'+process.platform+'/Release/sodium');
 
 
 describe('Sign', function() {

@@ -4,7 +4,7 @@
 "use strict";
 
 var should = require('should');
-var sodium = require('../build/Release/sodium');
+var sodium = require('../build/'+process.platform+'/Release/sodium');
 
 describe('String Comparison', function() {
     it('crypto_verify_16 throw with strings smaller than 16 bytes', function(done) {

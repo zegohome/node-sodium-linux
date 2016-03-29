@@ -2,7 +2,7 @@
  * Created by bmf on 11/2/13.
  */
 var should = require('should');
-var sodium = require('../build/Release/sodium');
+var sodium = require('../build/'+process.platform+'/Release/sodium');
 
 // Test all KeyPair classes
 testKey('box-key',sodium.crypto_box_PUBLICKEYBYTES, sodium.crypto_box_SECRETKEYBYTES);

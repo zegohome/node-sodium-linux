@@ -4,7 +4,7 @@
 "use strict";
 
 var should = require('should');
-var sodium = require('../build/Release/sodium');
+var sodium = require('../build/'+process.platform+'/Release/sodium');
 
 describe('Randombytes', function() {
     it('should return a buffer of random numbers', function(done) {

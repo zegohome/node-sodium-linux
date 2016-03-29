@@ -2,7 +2,7 @@
  * Created by bmf on 11/2/13.
  */
 var should = require('should');
-var sodium = require('../build/Release/sodium');
+var sodium = require('../build/'+process.platform+'/Release/sodium');
 
 var ECDH = require('../lib/ecdh');
 var DHKey = require('../lib/keys/dh-key');

@@ -5,7 +5,7 @@
 
 var should = require('should');
 var crypto = require('crypto');
-var sodium = require('../build/Release/sodium');
+var sodium = require('../build/'+process.platform+'/Release/sodium');
 
 var aliceskA = [
      0x77,0x07,0x6d,0x0a,0x73,0x18,0xa5,0x7d
