@@ -4,7 +4,7 @@
 "use strict";
 
 var should = require('should');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 var crypto = require('crypto');
 
 describe('Hash', function() {

@@ -5,7 +5,7 @@
 
 var should = require('should');
 var crypto = require('crypto');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 var aliceskA = [
      0x77,0x07,0x6d,0x0a,0x73,0x18,0xa5,0x7d
@@ -204,7 +204,7 @@ describe('crypto_box_open_easy', function() {
 
     // Encrypt
     var cipherMsg = sodium.crypto_box_easy(plainText, nonce, receiver.publicKey, sender.secretKey);
-    
+
     it('crypto_box_easy/crypto_box_open_easy should encrypt/decrypt', function(done) {
         // Decrypt
         var plainMsg = sodium.crypto_box_open_easy(cipherMsg,nonce,sender.publicKey, receiver.secretKey);
@@ -307,4 +307,3 @@ describe('crypto_box_open_easy', function() {
         done();
     });
 });
-

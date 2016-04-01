@@ -4,7 +4,7 @@
 "use strict";
 
 var should = require('should');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 describe('Constants', function() {
     it('should define lib constants', function(done) {

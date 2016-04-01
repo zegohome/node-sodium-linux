@@ -2,7 +2,7 @@
  * Created by bmf on 11/2/13.
  */
 var should = require('should');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 // Test all nonce classes
 
@@ -90,7 +90,7 @@ function testNonce(modName, sizeBuffer) {
             nonce.size().should.eql(sizeBuffer);
             done();
         });
-        
+
         it("nonce size should match that of sodium", function (done) {
             var nonce = new Nonce();
             nonce.bytes().should.eql(sizeBuffer);

@@ -2,7 +2,7 @@
  * Created by bmf on 11/2/13.
  */
 var should = require('should');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 var Auth = require('../lib/onetime-auth');
 if (process.env.COVERAGE) {

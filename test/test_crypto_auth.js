@@ -5,7 +5,7 @@
 
 var should = require('should');
 var crypto = require('crypto');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 describe('Auth', function() {
     it('should return a token', function(done) {

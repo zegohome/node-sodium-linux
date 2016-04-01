@@ -2,7 +2,7 @@
  * Created by bmf on 11/2/13.
  */
 var should = require('should');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 // Test all key classes
 testKey('auth-key',sodium.crypto_auth_KEYBYTES);
@@ -38,7 +38,7 @@ function testKey(modName, sizeBuffer) {
             key.size().should.eql(sizeBuffer);
             done();
         });
-        
+
         it("key bytes should match that of sodium", function (done) {
             var key = new Key();
             key.bytes().should.eql(sizeBuffer);

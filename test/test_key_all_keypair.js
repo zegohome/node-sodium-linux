@@ -2,7 +2,7 @@
  * Created by bmf on 11/2/13.
  */
 var should = require('should');
-var sodium = require('../build/'+process.platform+'/Release/sodium');
+var sodium = require('../lib/binding');
 
 // Test all KeyPair classes
 testKey('box-key',sodium.crypto_box_PUBLICKEYBYTES, sodium.crypto_box_SECRETKEYBYTES);
@@ -30,14 +30,14 @@ function testKey(modName,sizePkBuffer, sizeSkBuffer) {
             key.getSecretKey().size().should.eql(sizeSkBuffer);
             done();
         });
-        
+
         it("key bytes should match that of sodium", function (done) {
             var key = new KeyPair();
             key.publicKeyBytes().should.eql(sizePkBuffer);
             key.secretKeyBytes().should.eql(sizeSkBuffer);
             done();
         });
-        
+
         it("key bytes should match that of sodium", function (done) {
             var key = new KeyPair();
             key.pkBytes().should.eql(sizePkBuffer);
