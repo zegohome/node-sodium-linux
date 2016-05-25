@@ -16,8 +16,7 @@
     "should": ">=8.3.0"
   },
   "scripts": {
-    "test": "make test",
-    "install": "make sodium"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
