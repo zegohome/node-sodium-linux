@@ -3,6 +3,7 @@
 TOOLSET := target
 TARGET := sodium
 DEFS_Debug := \
+	'-DNODE_GYP_MODULE_NAME=sodium' \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
@@ -14,7 +15,7 @@ DEFS_Debug := \
 CFLAGS_Debug := \
 	-O0 \
 	-gdwarf-2 \
-	-mmacosx-version-min=10.5 \
+	-mmacosx-version-min=10.11 \
 	-arch x86_64 \
 	-Wall \
 	-Wendif-labels \
@@ -23,14 +24,16 @@ CFLAGS_Debug := \
 
 # Flags passed to only C files.
 CFLAGS_C_Debug := \
-	-fno-strict-aliasing
+	-fno-strict-aliasing \
+	-arch x86_64 -O2 -g -flto -mmacosx-version-min=10.11 -fPIC
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Debug := \
+	-std=gnu++0x \
 	-fno-rtti \
-	-fno-exceptions \
 	-fno-threadsafe-statics \
-	-fno-strict-aliasing
+	-fno-strict-aliasing \
+	-arch x86_64 -O2 -g -flto -mmacosx-version-min=10.11 -fPIC
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Debug :=
@@ -39,13 +42,16 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/dave/.node-gyp/0.10.42/src \
-	-I/Users/dave/.node-gyp/0.10.42/deps/uv/include \
-	-I/Users/dave/.node-gyp/0.10.42/deps/v8/include \
-	-I$(srcdir)/deps/libsodium-1.0.0/src/libsodium/include \
+	-I/Users/chadsmith/.node-gyp/5.5.0/include/node \
+	-I/Users/chadsmith/.node-gyp/5.5.0/src \
+	-I/Users/chadsmith/.node-gyp/5.5.0/deps/uv/include \
+	-I/Users/chadsmith/.node-gyp/5.5.0/deps/v8/include \
+	-I$(srcdir)/src/include \
+	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
 
 DEFS_Release := \
+	'-DNODE_GYP_MODULE_NAME=sodium' \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
@@ -55,7 +61,7 @@ DEFS_Release := \
 CFLAGS_Release := \
 	-Os \
 	-gdwarf-2 \
-	-mmacosx-version-min=10.5 \
+	-mmacosx-version-min=10.11 \
 	-arch x86_64 \
 	-Wall \
 	-Wendif-labels \
@@ -64,14 +70,16 @@ CFLAGS_Release := \
 
 # Flags passed to only C files.
 CFLAGS_C_Release := \
-	-fno-strict-aliasing
+	-fno-strict-aliasing \
+	-arch x86_64 -O2 -g -flto -mmacosx-version-min=10.11 -fPIC
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Release := \
+	-std=gnu++0x \
 	-fno-rtti \
-	-fno-exceptions \
 	-fno-threadsafe-statics \
-	-fno-strict-aliasing
+	-fno-strict-aliasing \
+	-arch x86_64 -O2 -g -flto -mmacosx-version-min=10.11 -fPIC
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Release :=
@@ -80,20 +88,46 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/dave/.node-gyp/0.10.42/src \
-	-I/Users/dave/.node-gyp/0.10.42/deps/uv/include \
-	-I/Users/dave/.node-gyp/0.10.42/deps/v8/include \
-	-I$(srcdir)/deps/libsodium-1.0.0/src/libsodium/include \
+	-I/Users/chadsmith/.node-gyp/5.5.0/include/node \
+	-I/Users/chadsmith/.node-gyp/5.5.0/src \
+	-I/Users/chadsmith/.node-gyp/5.5.0/deps/uv/include \
+	-I/Users/chadsmith/.node-gyp/5.5.0/deps/v8/include \
+	-I$(srcdir)/src/include \
+	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
 
 OBJS := \
-	$(obj).target/$(TARGET)/sodium.o
+	$(obj).target/$(TARGET)/src/crypto_aead.o \
+	$(obj).target/$(TARGET)/src/crypto_sign.o \
+	$(obj).target/$(TARGET)/src/crypto_sign_ed25519.o \
+	$(obj).target/$(TARGET)/src/crypto_box.o \
+	$(obj).target/$(TARGET)/src/crypto_box_curve25519xsalsa20poly1305.o \
+	$(obj).target/$(TARGET)/src/sodium_runtime.o \
+	$(obj).target/$(TARGET)/src/crypto_auth.o \
+	$(obj).target/$(TARGET)/src/crypto_auth_algos.o \
+	$(obj).target/$(TARGET)/src/crypto_core.o \
+	$(obj).target/$(TARGET)/src/crypto_scalarmult_curve25519.o \
+	$(obj).target/$(TARGET)/src/crypto_scalarmult.o \
+	$(obj).target/$(TARGET)/src/crypto_secretbox_xsalsa20poly1305.o \
+	$(obj).target/$(TARGET)/src/crypto_secretbox.o \
+	$(obj).target/$(TARGET)/src/sodium.o \
+	$(obj).target/$(TARGET)/src/crypto_stream.o \
+	$(obj).target/$(TARGET)/src/crypto_streams.o \
+	$(obj).target/$(TARGET)/src/helpers.o \
+	$(obj).target/$(TARGET)/src/randombytes.o \
+	$(obj).target/$(TARGET)/src/crypto_pwhash.o \
+	$(obj).target/$(TARGET)/src/crypto_hash.o \
+	$(obj).target/$(TARGET)/src/crypto_hash_sha256.o \
+	$(obj).target/$(TARGET)/src/crypto_hash_sha512.o \
+	$(obj).target/$(TARGET)/src/crypto_shorthash.o \
+	$(obj).target/$(TARGET)/src/crypto_shorthash_siphash24.o \
+	$(obj).target/$(TARGET)/src/crypto_generichash.o \
+	$(obj).target/$(TARGET)/src/crypto_generichash_blake2b.o \
+	$(obj).target/$(TARGET)/src/crypto_onetimeauth.o \
+	$(obj).target/$(TARGET)/src/crypto_onetimeauth_poly1305.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
-
-# Make sure our dependencies are built before any of us.
-$(OBJS): | $(builddir)/sodium.a
 
 # CFLAGS et al overrides must be target-local.
 # See "Target-specific Variable Values" in the GNU Make manual.
@@ -119,31 +153,39 @@ $(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cc FORCE_DO_CMD
 # End of this set of suffix rules
 ### Rules for final target.
 LDFLAGS_Debug := \
+	-arch x86_64 -mmacosx-version-min=10.11 -flto \
+	-undefined dynamic_lookup \
 	-Wl,-search_paths_first \
-	-mmacosx-version-min=10.5 \
+	-mmacosx-version-min=10.11 \
 	-arch x86_64 \
 	-L$(builddir)
 
 LIBTOOLFLAGS_Debug := \
+	-arch x86_64 -mmacosx-version-min=10.11 -flto \
+	-undefined dynamic_lookup \
 	-Wl,-search_paths_first
 
 LDFLAGS_Release := \
+	-arch x86_64 -mmacosx-version-min=10.11 -flto \
+	-undefined dynamic_lookup \
 	-Wl,-search_paths_first \
-	-mmacosx-version-min=10.5 \
+	-mmacosx-version-min=10.11 \
 	-arch x86_64 \
 	-L$(builddir)
 
 LIBTOOLFLAGS_Release := \
+	-arch x86_64 -mmacosx-version-min=10.11 -flto \
+	-undefined dynamic_lookup \
 	-Wl,-search_paths_first
 
 LIBS := \
-	-undefined dynamic_lookup
+	../deps/build/lib/libsodium.a
 
 $(builddir)/sodium.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(builddir)/sodium.node: LIBS := $(LIBS)
 $(builddir)/sodium.node: GYP_LIBTOOLFLAGS := $(LIBTOOLFLAGS_$(BUILDTYPE))
 $(builddir)/sodium.node: TOOLSET := $(TOOLSET)
-$(builddir)/sodium.node: $(OBJS) $(builddir)/sodium.a FORCE_DO_CMD
+$(builddir)/sodium.node: $(OBJS) FORCE_DO_CMD
 	$(call do_cmd,solink_module)
 
 all_deps += $(builddir)/sodium.node

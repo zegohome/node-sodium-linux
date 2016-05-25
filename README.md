@@ -1,18 +1,18 @@
 [![Build Status](https://secure.travis-ci.org/paixaop/node-sodium.png)](http://travis-ci.org/paixaop/node-sodium)
 
-Please check the develop branch for node 0.11 and 0.12 support, detached signatures and system architecture detection
-
 # node-sodium
 
+Uses Libsodium 1.0.10
 
 Port of the [lib sodium](https://github.com/jedisct1/libsodium) Encryption Library to Node.js.
 
-This a work in progress but most of Lib Sodium as been ported already.
-Missing are the `generichash` functions, and the alternative primitives, like `crypto_box_curve25519xsalsa20poly1305`, or `crypto_stream_aes128ctr`
+As of libsodium 1.0.10 all functions except memory allocation have been implemented.
+Missing functions are listed in [`docs/not implemented.md`](https://github.com/paixaop/node-sodium/blob/master/docs/not%20implemented.md).
 
-There's a "low level" native module that gives you access directly to Lib Sodium, and a friendlier high level API that makes the use of the library a bit easier.
 
-Check [`docs/ported-functions.md`](https://github.com/paixaop/node-sodium/tree/master/docs/ported-functions.md) for a list of all lib sodium functions included in node-sodium.
+There's a "low level" native module that gives you access directly to Lib Sodium, and a friendlier high level API that makes the library a bit easier to use.
+
+Check [`docs/low-level-api.md`](https://github.com/paixaop/node-sodium/tree/master/docs/low-level-api.md) for a list of all lib sodium functions included in node-sodium.
 
 # Usage
 
@@ -34,9 +34,9 @@ A low level API is provided for advanced users. The functions available through 
     var sender = sodium.crypto_box_keypair();
     var receiver = sodium.crypto_box_keypair();
     
-	// Generate random nonce
+    // Generate random nonce
     var nonce = new Buffer(sodium.crypto_box_NONCEBYTES);
-	sodium.randombytes_buf(nonce);
+    sodium.randombytes_buf(nonce);
     
     // Encrypt
     var plainText = new Buffer('this is a message');
@@ -46,24 +46,23 @@ A low level API is provided for advanced users. The functions available through 
     var plainBuffer = sodium.crypto_box_open(cipherMsg,nonce,sender.publicKey, receiver.secretKey);
 
     // We should get the same plainText!
-    // We should get the same plainText!
-    if( plainBuffer.toString() == plainText) {
+    if (plainBuffer.toString() == plainText) {
         console.log("Message decrypted correctly");
     }
     
-As you can see the high level API implementation is easier to use, but the low level API will fill just right for those with experience with the C version of lib sodium. It also allows you to bypass any bugs in the high level APIs.
+As you can see the high level API implementation is easier to use, but the low level API will feel just right for those experienced with the C version of lib sodium. It also allows you to bypass any bugs in the high level APIs.
 
 You can find this code sample in `examples\low-level-api.js`.
     
 # Documentation
 Please read the work in progress documentation found under [`docs/`](https://github.com/paixaop/node-sodium/tree/master/docs).
 
-You shoudld also review the unit tests as most of the high level API is "documented" there.
-Don't forget to check out the examples as well.
+You should also review the unit tests as most of the high level API is "documented" there.
+Don't forget to check out the [examples](https://github.com/paixaop/node-sodium/tree/master/examples) as well.
 
 The low level `libsodium` API documentation is now complete. All ported functions have been documented in [low-level-api.md](./docs/low-level-api.md) with code examples.
 
-Please be patient as I document the rest of the APIs, or better still help out :)
+Please be patient as I document the rest of the APIs, or better still: help out! :)
 
 # Lib Sodium Documentation
 Lib Sodium is documented [here](http://doc.libsodium.org/). Node-Sodium follows the same structure and I will keep documenting it as fast as possible. 
@@ -78,7 +77,19 @@ node-sodium depends on lib sodium, so if lib sodium does not compile on your pla
 
 # Manual Build
 
-    node-gyp build    
+Node Sodium includes the source of libsodium, so the normal install will try to compile libsodium directly from source, using libsodium's own build tools.
+This is the prefered method of compiling node sodium.
+If you can't compile libsodium from source in your platform you can [download a pre-compiled binary](http://www.libsodium.org/releases) and copy it to the `./deps/build/lib` folder.
+
+Before you run the manual build you must run the `npm install` once to install the required dependencies, like `node-gyp` that are needed to compile `node-sodium`.
+Please note that `npm install` will install the dependencies and compile `node-sodium` as well. After this initial step you can make changes to the source and run the following commands to manually build the module:
+
+    make sodium
+
+# SECURITY WARNING: Using a Binary Static libsodium
+
+Node Sodium is a strong encryption library, odds are that a lot of security functions of your application depend on it, so *DO NOT* use binary libsodium distributions that you haven't verified.
+If you use a pre-compiled version of libsodium you MUST be sure that nothing mallicious was added to the compiled version you are using.
 
 # Code Samples
 Please check the fully documented code samples in `test/test_sodium.js`.
@@ -89,7 +100,7 @@ To run the unit tests you need Mocha. If you'd like to run coverage reports you 
 
     npm install -g mocha mocha-istanbul
 
-You may need to run it with `sudo` is only root user has access to Node.js global directories
+You may need to run it with `sudo` as only the root user has access to Node.js global directories
 
     sudo npm install -g mocha mocha-istanbul
 
@@ -99,12 +110,14 @@ You need to have mocha test suite installed globally then you can run the node-s
     make test
     
 # Coverage Reports
-You need to have mocha test suite installed globally then you can run the node-sodium unit tests by
+You need to have mocha and mocha-istanbul installed globally then you can run the node-sodium coverage reports by
 	
     make test-cov
 	
 
 # License
-This software is licensed thorugh MIT License. Please read the LICENSE file for more details.
+This software is licensed through the MIT License. Please read the LICENSE file for more details.
 
+# Author
 
+Built and maintained by Pedro Paixao

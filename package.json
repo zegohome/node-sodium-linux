@@ -1,31 +1,42 @@
 {
-    "name": "sodium",
-    "version": "1.0.13",
-    "author" : "Pedro Paixao <paixaop@gmail.com>",
-    "license" : "MIT",
-    "description" : "Lib Sodium port for node.js",
-    "dependencies": {
-        "should" : ">=2.1.0",
-         "nan": ">=1.6.2"
-    },
-    "devDependencies": {
-        "mocha"  : ">=0.14.1",
-        "mocha-istanbul" : ">=0.2.0",
-        "istanbul" : ">=0.2.6",
-        "node-gyp": ">=1.0.2"
-    },
-    "scripts":{
-        "test": "make test"
-    },
-    "repository" : {
-        "type" : "git",
-        "url" : "https://github.com/paixaop/node-sodium"
-    },
-    "keywords":["encryption", "ed25519", "curve25519",
-        "NaCl", "libsodium", "crypto",
-        "unique", "stamp"],
-    "licenses": [{
-        "type": "MIT",
-        "url": "http://opensource.org/licenses/mit-license.php"
-    }]
+  "name": "sodium",
+  "version": "1.1.1",
+  "author": "Pedro Paixao <paixaop@gmail.com>",
+  "license": "MIT",
+  "description": "Lib Sodium port for node.js",
+  "dependencies": {
+    "mdextract": "^1.0.0",
+    "nan": "^2.2.1"
+  },
+  "devDependencies": {
+    "istanbul": ">=0.4.3",
+    "mocha": ">=2.4.5",
+    "mocha-istanbul": ">=0.2.0",
+    "node-gyp": ">=3.3.1",
+    "should": ">=8.3.0"
+  },
+  "scripts": {
+    "test": "make test",
+    "install": "make sodium"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paixaop/node-sodium"
+  },
+  "keywords": [
+    "encryption",
+    "ed25519",
+    "curve25519",
+    "NaCl",
+    "libsodium",
+    "crypto",
+    "unique",
+    "stamp"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ]
 }

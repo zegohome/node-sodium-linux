@@ -3,6 +3,7 @@
 TOOLSET := target
 TARGET := sodium
 DEFS_Debug := \
+	'-DNODE_GYP_MODULE_NAME=sodium' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION' \
@@ -12,11 +13,12 @@ DEFS_Debug := \
 # Flags passed to all source files.
 CFLAGS_Debug := \
 	-fPIC \
+	-pthread \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter \
-	-pthread \
 	-m64 \
+	-fPIC \
 	-g \
 	-O0
 
@@ -26,16 +28,20 @@ CFLAGS_C_Debug :=
 # Flags passed to only C++ files.
 CFLAGS_CC_Debug := \
 	-fno-rtti \
-	-fno-exceptions
+	-fno-exceptions \
+	-std=gnu++0x
 
 INCS_Debug := \
-	-I/home/ec2-user/.node-gyp/0.10.36/src \
-	-I/home/ec2-user/.node-gyp/0.10.36/deps/uv/include \
-	-I/home/ec2-user/.node-gyp/0.10.36/deps/v8/include \
-	-I$(srcdir)/deps/libsodium-1.0.0/src/libsodium/include \
+	-I/home/ec2-user/.node-gyp/4.4.5/include/node \
+	-I/home/ec2-user/.node-gyp/4.4.5/src \
+	-I/home/ec2-user/.node-gyp/4.4.5/deps/uv/include \
+	-I/home/ec2-user/.node-gyp/4.4.5/deps/v8/include \
+	-I$(srcdir)/src/include \
+	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
 
 DEFS_Release := \
+	'-DNODE_GYP_MODULE_NAME=sodium' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION'
@@ -43,14 +49,15 @@ DEFS_Release := \
 # Flags passed to all source files.
 CFLAGS_Release := \
 	-fPIC \
+	-pthread \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter \
-	-pthread \
 	-m64 \
-	-O2 \
-	-fno-strict-aliasing \
-	-fno-tree-vrp \
+	-fPIC \
+	-O3 \
+	-ffunction-sections \
+	-fdata-sections \
 	-fno-omit-frame-pointer
 
 # Flags passed to only C files.
@@ -59,23 +66,50 @@ CFLAGS_C_Release :=
 # Flags passed to only C++ files.
 CFLAGS_CC_Release := \
 	-fno-rtti \
-	-fno-exceptions
+	-fno-exceptions \
+	-std=gnu++0x
 
 INCS_Release := \
-	-I/home/ec2-user/.node-gyp/0.10.36/src \
-	-I/home/ec2-user/.node-gyp/0.10.36/deps/uv/include \
-	-I/home/ec2-user/.node-gyp/0.10.36/deps/v8/include \
-	-I$(srcdir)/deps/libsodium-1.0.0/src/libsodium/include \
+	-I/home/ec2-user/.node-gyp/4.4.5/include/node \
+	-I/home/ec2-user/.node-gyp/4.4.5/src \
+	-I/home/ec2-user/.node-gyp/4.4.5/deps/uv/include \
+	-I/home/ec2-user/.node-gyp/4.4.5/deps/v8/include \
+	-I$(srcdir)/src/include \
+	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
 
 OBJS := \
-	$(obj).target/$(TARGET)/sodium.o
+	$(obj).target/$(TARGET)/src/crypto_aead.o \
+	$(obj).target/$(TARGET)/src/crypto_sign.o \
+	$(obj).target/$(TARGET)/src/crypto_sign_ed25519.o \
+	$(obj).target/$(TARGET)/src/crypto_box.o \
+	$(obj).target/$(TARGET)/src/crypto_box_curve25519xsalsa20poly1305.o \
+	$(obj).target/$(TARGET)/src/sodium_runtime.o \
+	$(obj).target/$(TARGET)/src/crypto_auth.o \
+	$(obj).target/$(TARGET)/src/crypto_auth_algos.o \
+	$(obj).target/$(TARGET)/src/crypto_core.o \
+	$(obj).target/$(TARGET)/src/crypto_scalarmult_curve25519.o \
+	$(obj).target/$(TARGET)/src/crypto_scalarmult.o \
+	$(obj).target/$(TARGET)/src/crypto_secretbox_xsalsa20poly1305.o \
+	$(obj).target/$(TARGET)/src/crypto_secretbox.o \
+	$(obj).target/$(TARGET)/src/sodium.o \
+	$(obj).target/$(TARGET)/src/crypto_stream.o \
+	$(obj).target/$(TARGET)/src/crypto_streams.o \
+	$(obj).target/$(TARGET)/src/helpers.o \
+	$(obj).target/$(TARGET)/src/randombytes.o \
+	$(obj).target/$(TARGET)/src/crypto_pwhash.o \
+	$(obj).target/$(TARGET)/src/crypto_hash.o \
+	$(obj).target/$(TARGET)/src/crypto_hash_sha256.o \
+	$(obj).target/$(TARGET)/src/crypto_hash_sha512.o \
+	$(obj).target/$(TARGET)/src/crypto_shorthash.o \
+	$(obj).target/$(TARGET)/src/crypto_shorthash_siphash24.o \
+	$(obj).target/$(TARGET)/src/crypto_generichash.o \
+	$(obj).target/$(TARGET)/src/crypto_generichash_blake2b.o \
+	$(obj).target/$(TARGET)/src/crypto_onetimeauth.o \
+	$(obj).target/$(TARGET)/src/crypto_onetimeauth_poly1305.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
-
-# Make sure our dependencies are built before any of us.
-$(OBJS): | $(builddir)/sodium.a $(obj).target/deps/sodium.a
 
 # CFLAGS et al overrides must be target-local.
 # See "Target-specific Variable Values" in the GNU Make manual.
@@ -108,12 +142,13 @@ LDFLAGS_Release := \
 	-rdynamic \
 	-m64
 
-LIBS :=
+LIBS := \
+	../deps/build/lib/libsodium.a
 
 $(obj).target/sodium.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(obj).target/sodium.node: LIBS := $(LIBS)
 $(obj).target/sodium.node: TOOLSET := $(TOOLSET)
-$(obj).target/sodium.node: $(OBJS) $(obj).target/deps/sodium.a FORCE_DO_CMD
+$(obj).target/sodium.node: $(OBJS) FORCE_DO_CMD
 	$(call do_cmd,solink_module)
 
 all_deps += $(obj).target/sodium.node
