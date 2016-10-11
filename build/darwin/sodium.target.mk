@@ -4,6 +4,9 @@ TOOLSET := target
 TARGET := sodium
 DEFS_Debug := \
 	'-DNODE_GYP_MODULE_NAME=sodium' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
@@ -29,7 +32,6 @@ CFLAGS_C_Debug := \
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Debug := \
-	-std=gnu++0x \
 	-fno-rtti \
 	-fno-threadsafe-statics \
 	-fno-strict-aliasing \
@@ -42,16 +44,19 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/chadsmith/.node-gyp/5.5.0/include/node \
-	-I/Users/chadsmith/.node-gyp/5.5.0/src \
-	-I/Users/chadsmith/.node-gyp/5.5.0/deps/uv/include \
-	-I/Users/chadsmith/.node-gyp/5.5.0/deps/v8/include \
+	-I/Users/chadsmith/.node-gyp/0.12.15/include/node \
+	-I/Users/chadsmith/.node-gyp/0.12.15/src \
+	-I/Users/chadsmith/.node-gyp/0.12.15/deps/uv/include \
+	-I/Users/chadsmith/.node-gyp/0.12.15/deps/v8/include \
 	-I$(srcdir)/src/include \
 	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=sodium' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
@@ -75,7 +80,6 @@ CFLAGS_C_Release := \
 
 # Flags passed to only C++ files.
 CFLAGS_CC_Release := \
-	-std=gnu++0x \
 	-fno-rtti \
 	-fno-threadsafe-statics \
 	-fno-strict-aliasing \
@@ -88,10 +92,10 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/chadsmith/.node-gyp/5.5.0/include/node \
-	-I/Users/chadsmith/.node-gyp/5.5.0/src \
-	-I/Users/chadsmith/.node-gyp/5.5.0/deps/uv/include \
-	-I/Users/chadsmith/.node-gyp/5.5.0/deps/v8/include \
+	-I/Users/chadsmith/.node-gyp/0.12.15/include/node \
+	-I/Users/chadsmith/.node-gyp/0.12.15/src \
+	-I/Users/chadsmith/.node-gyp/0.12.15/deps/uv/include \
+	-I/Users/chadsmith/.node-gyp/0.12.15/deps/v8/include \
 	-I$(srcdir)/src/include \
 	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
