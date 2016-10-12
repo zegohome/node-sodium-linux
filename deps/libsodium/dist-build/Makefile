@@ -85,13 +85,14 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-apple-darwin15.5.0
-host_triplet = x86_64-apple-darwin15.5.0
+build_triplet = x86_64-apple-darwin15.6.0
+host_triplet = x86_64-apple-darwin15.6.0
 subdir = dist-build
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_compile_flag.m4 \
 	$(top_srcdir)/m4/ax_check_define.m4 \
 	$(top_srcdir)/m4/ax_check_link_flag.m4 \
+	$(top_srcdir)/m4/ax_pthread.m4 \
 	$(top_srcdir)/m4/ax_valgrind_check.m4 \
 	$(top_srcdir)/m4/ld-output-def.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -137,9 +138,9 @@ AWK = awk
 CC = gcc
 CCAS = gcc
 CCASDEPMODE = depmode=gcc3
-CCASFLAGS = -g -O2
+CCASFLAGS = -g -O2 -Qunused-arguments -pthread
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2 -fvisibility=hidden -fPIC -fPIE -fno-strict-aliasing -fno-strict-overflow -fstack-protector -Wwrite-strings -Wdiv-by-zero -Wsometimes-uninitialized
+CFLAGS = -g -O2 -Qunused-arguments -pthread -fvisibility=hidden -fPIC -fPIE -fno-strict-aliasing -fno-strict-overflow -fstack-protector -Wwrite-strings -Wdiv-by-zero -Wsometimes-uninitialized
 CFLAGS_AESNI = -maes
 CFLAGS_AVX = -mavx2
 CFLAGS_AVX2 = 
@@ -153,7 +154,7 @@ CPP = gcc -E
 CPPFLAGS =  -D_FORTIFY_SOURCE=2
 CWFLAGS =  -Wall -Wextra -Wno-unknown-warning-option -Wbad-function-cast -Wcast-align -Wcast-qual -Wduplicated-cond -Wfloat-equal -Wformat=2 -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-unknown-pragmas -Wnormalized=id -Wnull-dereference -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wvariable-decl
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"libsodium\" -DPACKAGE_TARNAME=\"libsodium\" -DPACKAGE_VERSION=\"1.0.10\" -DPACKAGE_STRING=\"libsodium\ 1.0.10\" -DPACKAGE_BUGREPORT=\"https://github.com/jedisct1/libsodium/issues\" -DPACKAGE_URL=\"https://github.com/jedisct1/libsodium\" -DPACKAGE=\"libsodium\" -DVERSION=\"1.0.10\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -D__EXTENSIONS__=1 -D_ALL_SOURCE=1 -D_GNU_SOURCE=1 -D_POSIX_PTHREAD_SEMANTICS=1 -D_TANDEM_SOURCE=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_MMINTRIN_H=1 -DHAVE_EMMINTRIN_H=1 -DHAVE_PMMINTRIN_H=1 -DHAVE_TMMINTRIN_H=1 -DHAVE_SMMINTRIN_H=1 -DHAVE_AVXINTRIN_H=1 -DHAVE_AVX2INTRIN_H=1 -DHAVE_WMMINTRIN_H=1 -DHAVE_SYS_MMAN_H=1 -DNATIVE_LITTLE_ENDIAN=1 -DHAVE_AMD64_ASM=1 -DHAVE_AVX_ASM=1 -DHAVE_TI_MODE=1 -DHAVE_CPUID=1 -DASM_HIDE_SYMBOL=.private_extern -DHAVE_WEAK_SYMBOLS=1 -DCPU_UNALIGNED_ACCESS=1 -DHAVE_ARC4RANDOM=1 -DHAVE_ARC4RANDOM_BUF=1 -DHAVE_MMAP=1 -DHAVE_MLOCK=1 -DHAVE_MADVISE=1 -DHAVE_MPROTECT=1 -DHAVE_POSIX_MEMALIGN=1 -DHAVE_GETPID=1
+DEFS = -DPACKAGE_NAME=\"libsodium\" -DPACKAGE_TARNAME=\"libsodium\" -DPACKAGE_VERSION=\"1.0.10\" -DPACKAGE_STRING=\"libsodium\ 1.0.10\" -DPACKAGE_BUGREPORT=\"https://github.com/jedisct1/libsodium/issues\" -DPACKAGE_URL=\"https://github.com/jedisct1/libsodium\" -DPACKAGE=\"libsodium\" -DVERSION=\"1.0.10\" -DHAVE_PTHREAD_PRIO_INHERIT=1 -DHAVE_PTHREAD=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -D__EXTENSIONS__=1 -D_ALL_SOURCE=1 -D_GNU_SOURCE=1 -D_POSIX_PTHREAD_SEMANTICS=1 -D_TANDEM_SOURCE=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_MMINTRIN_H=1 -DHAVE_EMMINTRIN_H=1 -DHAVE_PMMINTRIN_H=1 -DHAVE_TMMINTRIN_H=1 -DHAVE_SMMINTRIN_H=1 -DHAVE_AVXINTRIN_H=1 -DHAVE_AVX2INTRIN_H=1 -DHAVE_WMMINTRIN_H=1 -DHAVE_SYS_MMAN_H=1 -DNATIVE_LITTLE_ENDIAN=1 -DHAVE_AMD64_ASM=1 -DHAVE_AVX_ASM=1 -DHAVE_TI_MODE=1 -DHAVE_CPUID=1 -DASM_HIDE_SYMBOL=.private_extern -DHAVE_WEAK_SYMBOLS=1 -DCPU_UNALIGNED_ACCESS=1 -DHAVE_ARC4RANDOM=1 -DHAVE_ARC4RANDOM_BUF=1 -DHAVE_MMAP=1 -DHAVE_MLOCK=1 -DHAVE_MADVISE=1 -DHAVE_MPROTECT=1 -DHAVE_NANOSLEEP=1 -DHAVE_POSIX_MEMALIGN=1 -DHAVE_GETPID=1
 DEPDIR = .deps
 DLLTOOL = false
 DLL_VERSION = 8
@@ -175,11 +176,11 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-ISODATE = 2016-05-25
+ISODATE = 2016-10-11
 LD = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
 LDFLAGS =  -pie
 LIBOBJS = 
-LIBS = 
+LIBS =  
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIBTOOL_DEPS = build-aux/ltmain.sh
 LIBTOOL_EXTRA_FLAGS =  -version-info 19:0:1
@@ -193,7 +194,7 @@ MANIFEST_TOOL = :
 MKDIR_P = ../build-aux/install-sh -c -d
 NM = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm -B
 NMEDIT = nmedit
-OBJDUMP = false
+OBJDUMP = objdump
 OBJEXT = o
 OTOOL = otool
 OTOOL64 = :
@@ -205,6 +206,9 @@ PACKAGE_TARNAME = libsodium
 PACKAGE_URL = https://github.com/jedisct1/libsodium
 PACKAGE_VERSION = 1.0.10
 PATH_SEPARATOR = :
+PTHREAD_CC = gcc
+PTHREAD_CFLAGS = -Qunused-arguments -pthread
+PTHREAD_LIBS = 
 RANLIB = ranlib
 SAFECODE_HOME = 
 SED = /usr/bin/sed
@@ -234,11 +238,12 @@ am__leading_dot = .
 am__quote = 
 am__tar = tar --format=ustar -chf - "$$tardir"
 am__untar = tar -xf -
+ax_pthread_config = 
 bindir = ${exec_prefix}/bin
-build = x86_64-apple-darwin15.5.0
+build = x86_64-apple-darwin15.6.0
 build_alias = 
 build_cpu = x86_64
-build_os = darwin15.5.0
+build_os = darwin15.6.0
 build_vendor = apple
 builddir = .
 datadir = ${datarootdir}
@@ -246,10 +251,10 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-apple-darwin15.5.0
+host = x86_64-apple-darwin15.6.0
 host_alias = 
 host_cpu = x86_64
-host_os = darwin15.5.0
+host_os = darwin15.6.0
 host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
@@ -282,12 +287,14 @@ EXTRA_DIST = \
 	android-mips32.sh \
 	android-mips64.sh \
 	android-x86.sh \
-	android-x86-64.sh \
+	android-x86_64.sh \
 	emscripten.sh \
 	ios.sh \
 	msys2-win32.sh \
 	msys2-win64.sh \
-	nativeclient.sh
+	nativeclient-pnacl.sh \
+	nativeclient-x86.sh \
+	nativeclient-x86_64.sh
 
 all: all-am
 

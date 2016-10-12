@@ -4,6 +4,9 @@ TOOLSET := target
 TARGET := sodium
 DEFS_Debug := \
 	'-DNODE_GYP_MODULE_NAME=sodium' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION' \
@@ -28,20 +31,22 @@ CFLAGS_C_Debug :=
 # Flags passed to only C++ files.
 CFLAGS_CC_Debug := \
 	-fno-rtti \
-	-fno-exceptions \
-	-std=gnu++0x
+	-fno-exceptions
 
 INCS_Debug := \
-	-I/home/ec2-user/.node-gyp/4.4.5/include/node \
-	-I/home/ec2-user/.node-gyp/4.4.5/src \
-	-I/home/ec2-user/.node-gyp/4.4.5/deps/uv/include \
-	-I/home/ec2-user/.node-gyp/4.4.5/deps/v8/include \
+	-I/root/.node-gyp/0.12.15/include/node \
+	-I/root/.node-gyp/0.12.15/src \
+	-I/root/.node-gyp/0.12.15/deps/uv/include \
+	-I/root/.node-gyp/0.12.15/deps/v8/include \
 	-I$(srcdir)/src/include \
 	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=sodium' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION'
@@ -58,6 +63,8 @@ CFLAGS_Release := \
 	-O3 \
 	-ffunction-sections \
 	-fdata-sections \
+	-fno-tree-vrp \
+	-fno-tree-sink \
 	-fno-omit-frame-pointer
 
 # Flags passed to only C files.
@@ -66,14 +73,13 @@ CFLAGS_C_Release :=
 # Flags passed to only C++ files.
 CFLAGS_CC_Release := \
 	-fno-rtti \
-	-fno-exceptions \
-	-std=gnu++0x
+	-fno-exceptions
 
 INCS_Release := \
-	-I/home/ec2-user/.node-gyp/4.4.5/include/node \
-	-I/home/ec2-user/.node-gyp/4.4.5/src \
-	-I/home/ec2-user/.node-gyp/4.4.5/deps/uv/include \
-	-I/home/ec2-user/.node-gyp/4.4.5/deps/v8/include \
+	-I/root/.node-gyp/0.12.15/include/node \
+	-I/root/.node-gyp/0.12.15/src \
+	-I/root/.node-gyp/0.12.15/deps/uv/include \
+	-I/root/.node-gyp/0.12.15/deps/v8/include \
 	-I$(srcdir)/src/include \
 	-I$(srcdir)/deps/build/include \
 	-I$(srcdir)/node_modules/nan

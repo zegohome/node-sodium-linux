@@ -4,7 +4,7 @@ BINDIR = ./node_modules/.bin
 
 LIBSODIUM_DIR = ./deps/libsodium
 INSTALL_DIR = $(CURDIR)/deps/build
-STATIC_LIB = ${INSTALL_DIR}/lib/libsodium
+SODIUM_LIB = ${INSTALL_DIR}/lib/libsodium
 
 .DEFAULT_GOAL := sodium
 
@@ -28,7 +28,7 @@ else
 		THIS_OS = Linux
         CCFLAGS += -D LINUX
 		CCFLAGS += -fPIC
-		
+
     endif
     ifeq ($(UNAME_S),Darwin)
 		THIS_OS = OSX
@@ -53,14 +53,15 @@ endif
 
 ec:
 	@echo ${OSX_VERSION_MIN}
-	
+
 # If a static libsodium is found then compile against it
 # instead of trying to compile from source
 libsodium:
-ifeq (,$(wildcard ${STATIC_LIB}.*))
-	@echo Static libsodium was not found at ${STATIC_LIB} so compiling libsodium from source.
-	@cd $(LIBSODIUM_DIR)/ && ./configure  \
-		--enable-static --enable-shared --with-pic --prefix="$(INSTALL_DIR)"
+ifeq (,$(wildcard ${SODIUM_LIB}.*))
+	@echo Static libsodium was not found at ${SODIUM_LIB} so compiling libsodium from source.
+	@cd $(LIBSODIUM_DIR)/ && ./autogen.sh
+	@cd $(LIBSODIUM_DIR)/ && ./configure --enable-static \
+           --enable-shared --with-pic --prefix="$(INSTALL_DIR)"
 	@cd $(LIBSODIUM_DIR)/ && make clean > /dev/null
 	@cd $(LIBSODIUM_DIR)/ && make -j3 check
 	@cd $(LIBSODIUM_DIR)/ && make -j3 install
@@ -71,7 +72,12 @@ else
 endif
 
 sodium: libsodium
-	$(BINDIR)/node-gyp rebuild
+	echo Build node-sodium module
+	node-gyp rebuild
+
+nodesodium:
+	echo Build node-sodium module
+	node-gyp rebuild
 
 test: test-unit
 
@@ -95,21 +101,52 @@ test-cov: clean instrument
 	@echo
 	@echo Open html-report/index.html file in your browser
 
-git-pull:
-	git pull
-	git submodule init
-	git submodule update
-	git submodule status
-
 clean:
 	-rm -fr lib-cov
 	-rm -fr covershot
 	-rm -fr html-report
 	-rm -fr coverage
 	-rm -fr coverage.html
-	-rm -fr *.o
 	-rm -fr ${INSTALL_DIR}
-	cd ${LIBSODIUM_DIR} && $(MAKE) clean
+	-rm -fr ${LIBSODIUM_DIR}/autom4te.cache
+	-rm -fr ${LIBSODIUM_DIR}/build-aux
+	-rm ${LIBSODIUM_DIR}/aclocal.m4
+	-rm ${LIBSODIUM_DIR}/config.status
+	-rm ${LIBSODIUM_DIR}/configure
+	-rm ${LIBSODIUM_DIR}/libsodium-uninstalled.pc
+	-rm ${LIBSODIUM_DIR}/libsodium.pc
+	-rm ${LIBSODIUM_DIR}/libtool
+	-rm ${LIBSODIUM_DIR}/m4/libtool.m4
+	-rm ${LIBSODIUM_DIR}/m4/ltoptions.m4
+	-rm ${LIBSODIUM_DIR}/m4/ltsugar.m4
+	-rm ${LIBSODIUM_DIR}/m4/ltversion.m4
+	-rm ${LIBSODIUM_DIR}/m4/lt~obsolete.m4
+	-rm ${LIBSODIUM_DIR}/src/libsodium/include/sodium/version.h
+	-find . -type f -name *.lo -delete
+	-find ${LIBSODIUM_DIR} -type f -name *.la -delete
+	-find ${LIBSODIUM_DIR} -type f -name *.a -delete
+	-find . -type f -name *.log -delete
+	-find . -type f -name *.o -delete
+	-find ${LIBSODIUM_DIR} -type f -name .dirstamp -delete
+	-find ${LIBSODIUM_DIR} -name Makefile -delete
+	-find ${LIBSODIUM_DIR} -name .deps -exec rm -fr {} \;
+	-find ${LIBSODIUM_DIR} -name .libs -exec rm -fr {} \;
+	-find ${LIBSODIUM_DIR} -name *.res -delete
+	-find ${LIBSODIUM_DIR} -name Makefile.in -delete
+	-find ${LIBSODIUM_DIR} -name *.trs -delete
+	-find ${LIBSODIUM_DIR}/test/default/ -type f ! -name "*.*" -delete
+
+
+cleanbuild: clean
+	-rm -fr ./build
+
+cleanall: cleanbuild
+	-rm -fr ./node_modules
+
+publish:
+	npm version patch
+	npm publish
+
 
 all:
 	sodium

@@ -1,14 +1,15 @@
 {
   "name": "sodium",
-  "version": "1.1.1",
+  "version": "1.1.15",
   "author": "Pedro Paixao <paixaop@gmail.com>",
   "license": "MIT",
   "description": "Lib Sodium port for node.js",
+  "main": "index.js",
   "dependencies": {
-    "mdextract": "^1.0.0",
     "nan": "^2.2.1"
   },
   "devDependencies": {
+    "mdextract": "^1.0.0",
     "istanbul": ">=0.4.3",
     "mocha": ">=2.4.5",
     "mocha-istanbul": ">=0.2.0",

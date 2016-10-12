@@ -308,8 +308,8 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = cd $(srcdir); /home/ec2-user/node-sodium/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "--toplevel-dir=." -I/home/ec2-user/node-sodium/build/config.gypi -I/home/ec2-user/node-sodium/node_modules/node-gyp/addon.gypi -I/home/ec2-user/.node-gyp/4.4.5/include/node/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/ec2-user/.node-gyp/4.4.5" "-Dnode_gyp_dir=/home/ec2-user/node-sodium/node_modules/node-gyp" "-Dnode_lib_file=node.lib" "-Dmodule_root_dir=/home/ec2-user/node-sodium" binding.gyp
-Makefile: $(srcdir)/../.node-gyp/4.4.5/include/node/common.gypi $(srcdir)/node_modules/node-gyp/addon.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp
+cmd_regen_makefile = cd $(srcdir); /root/.nvm/versions/node/v0.12.15/lib/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "--toplevel-dir=." -I/root/node-sodium/build/config.gypi -I/root/.nvm/versions/node/v0.12.15/lib/node_modules/node-gyp/addon.gypi -I/root/.node-gyp/0.12.15/include/node/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/root/.node-gyp/0.12.15" "-Dnode_gyp_dir=/root/.nvm/versions/node/v0.12.15/lib/node_modules/node-gyp" "-Dnode_lib_file=node.lib" "-Dmodule_root_dir=/root/node-sodium" binding.gyp
+Makefile: $(srcdir)/../.node-gyp/0.12.15/include/node/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../.nvm/versions/node/v0.12.15/lib/node_modules/node-gyp/addon.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included

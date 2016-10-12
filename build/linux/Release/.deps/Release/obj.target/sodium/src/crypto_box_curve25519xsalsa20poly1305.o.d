@@ -1,28 +1,27 @@
-cmd_Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o := g++ '-DNODE_GYP_MODULE_NAME=sodium' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/home/ec2-user/.node-gyp/4.4.5/include/node -I/home/ec2-user/.node-gyp/4.4.5/src -I/home/ec2-user/.node-gyp/4.4.5/deps/uv/include -I/home/ec2-user/.node-gyp/4.4.5/deps/v8/include -I../src/include -I../deps/build/include -I../node_modules/nan  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -fPIC -O3 -ffunction-sections -fdata-sections -fno-omit-frame-pointer -fno-rtti -fno-exceptions -std=gnu++0x -MMD -MF ./Release/.deps/Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o.d.raw   -c -o Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o ../src/crypto_box_curve25519xsalsa20poly1305.cc
+cmd_Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o := g++ '-DNODE_GYP_MODULE_NAME=sodium' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/root/.node-gyp/0.12.15/include/node -I/root/.node-gyp/0.12.15/src -I/root/.node-gyp/0.12.15/deps/uv/include -I/root/.node-gyp/0.12.15/deps/v8/include -I../src/include -I../deps/build/include -I../node_modules/nan  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -fPIC -O3 -ffunction-sections -fdata-sections -fno-tree-vrp -fno-tree-sink -fno-omit-frame-pointer -fno-rtti -fno-exceptions -MMD -MF ./Release/.deps/Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o.d.raw   -c -o Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o ../src/crypto_box_curve25519xsalsa20poly1305.cc
 Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o: \
  ../src/crypto_box_curve25519xsalsa20poly1305.cc \
- ../src/include/node_sodium.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/node.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/v8.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/v8-version.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/v8config.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/node_version.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/node_buffer.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/node.h \
- ../node_modules/nan/nan.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/node_version.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/uv.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/uv-errno.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/uv-version.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/uv-unix.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/uv-threadpool.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/uv-linux.h \
- /home/ec2-user/.node-gyp/4.4.5/include/node/node_object_wrap.h \
+ ../src/include/node_sodium.h /root/.node-gyp/0.12.15/include/node/node.h \
+ /root/.node-gyp/0.12.15/include/node/v8.h \
+ /root/.node-gyp/0.12.15/include/node/v8stdint.h \
+ /root/.node-gyp/0.12.15/include/node/v8config.h \
+ /root/.node-gyp/0.12.15/include/node/node_version.h \
+ /root/.node-gyp/0.12.15/include/node/node_buffer.h \
+ /root/.node-gyp/0.12.15/include/node/node.h \
+ /root/.node-gyp/0.12.15/include/node/smalloc.h ../node_modules/nan/nan.h \
+ /root/.node-gyp/0.12.15/include/node/node_version.h \
+ /root/.node-gyp/0.12.15/include/node/uv.h \
+ /root/.node-gyp/0.12.15/include/node/uv-errno.h \
+ /root/.node-gyp/0.12.15/include/node/uv-version.h \
+ /root/.node-gyp/0.12.15/include/node/uv-unix.h \
+ /root/.node-gyp/0.12.15/include/node/uv-threadpool.h \
+ /root/.node-gyp/0.12.15/include/node/uv-linux.h \
+ /root/.node-gyp/0.12.15/include/node/node_object_wrap.h \
  ../node_modules/nan/nan_callbacks.h \
  ../node_modules/nan/nan_callbacks_12_inl.h \
- ../node_modules/nan/nan_maybe_43_inl.h \
+ ../node_modules/nan/nan_maybe_pre_43_inl.h \
  ../node_modules/nan/nan_converters.h \
- ../node_modules/nan/nan_converters_43_inl.h \
+ ../node_modules/nan/nan_converters_pre_43_inl.h \
  ../node_modules/nan/nan_new.h \
  ../node_modules/nan/nan_implementation_12_inl.h \
  ../node_modules/nan/nan_persistent_12_inl.h \
@@ -93,27 +92,28 @@ Release/obj.target/sodium/src/crypto_box_curve25519xsalsa20poly1305.o: \
  ../deps/build/include/sodium/version.h
 ../src/crypto_box_curve25519xsalsa20poly1305.cc:
 ../src/include/node_sodium.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/node.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/v8.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/v8-version.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/v8config.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/node_version.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/node_buffer.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/node.h:
+/root/.node-gyp/0.12.15/include/node/node.h:
+/root/.node-gyp/0.12.15/include/node/v8.h:
+/root/.node-gyp/0.12.15/include/node/v8stdint.h:
+/root/.node-gyp/0.12.15/include/node/v8config.h:
+/root/.node-gyp/0.12.15/include/node/node_version.h:
+/root/.node-gyp/0.12.15/include/node/node_buffer.h:
+/root/.node-gyp/0.12.15/include/node/node.h:
+/root/.node-gyp/0.12.15/include/node/smalloc.h:
 ../node_modules/nan/nan.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/node_version.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/uv.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/uv-errno.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/uv-version.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/uv-unix.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/uv-threadpool.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/uv-linux.h:
-/home/ec2-user/.node-gyp/4.4.5/include/node/node_object_wrap.h:
+/root/.node-gyp/0.12.15/include/node/node_version.h:
+/root/.node-gyp/0.12.15/include/node/uv.h:
+/root/.node-gyp/0.12.15/include/node/uv-errno.h:
+/root/.node-gyp/0.12.15/include/node/uv-version.h:
+/root/.node-gyp/0.12.15/include/node/uv-unix.h:
+/root/.node-gyp/0.12.15/include/node/uv-threadpool.h:
+/root/.node-gyp/0.12.15/include/node/uv-linux.h:
+/root/.node-gyp/0.12.15/include/node/node_object_wrap.h:
 ../node_modules/nan/nan_callbacks.h:
 ../node_modules/nan/nan_callbacks_12_inl.h:
-../node_modules/nan/nan_maybe_43_inl.h:
+../node_modules/nan/nan_maybe_pre_43_inl.h:
 ../node_modules/nan/nan_converters.h:
-../node_modules/nan/nan_converters_43_inl.h:
+../node_modules/nan/nan_converters_pre_43_inl.h:
 ../node_modules/nan/nan_new.h:
 ../node_modules/nan/nan_implementation_12_inl.h:
 ../node_modules/nan/nan_persistent_12_inl.h:
